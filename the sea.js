@@ -34,6 +34,9 @@ function draw() {
   xOffset += (targetXOffset - xOffset) * easing;
   yOffset += (targetYOffset - yOffset) * easing;
 
+  let centerX = windowWidth / 2;
+  let centerY = windowHeight / 2;
+
   let yoff = yOffset;
 
   for (let y = 0; y < rows; y++) {
@@ -43,8 +46,8 @@ function draw() {
     for (let x = 0; x < cols; x++) {
       let angle = noise(xoff, yoff) * TWO_PI * 2;
       let v = p5.Vector.fromAngle(angle);
-      let xn = x * scl - windowWidth / 2;
-      let yn = y * scl - windowHeight / 2;
+      let xn = x * scl - w / 2 + centerX;
+      let yn = y * scl - h / 2 + centerY;
       let curveX = xn + v.x * scl * 0.5;
       let curveY = yn + v.y * scl * 0.5;
       vertex(curveX, curveY);
@@ -62,8 +65,8 @@ function draw() {
       if (x % buttonSpacing === 0 && y % buttonSpacing === 0) {
         let angle = noise(xoffButtons, yoffButtons) * TWO_PI * 2;
         let v = p5.Vector.fromAngle(angle);
-        let xn = x * scl - windowWidth / 2;
-        let yn = y * scl - windowHeight / 2;
+        let xn = x * scl - w / 2 + centerX;
+        let yn = y * scl - h / 2 + centerY;
         let bx = xn + v.x * scl * 0.5 - buttonSize / 2;
         let by = yn + v.y * scl * 0.5 - buttonSize / 2;
 
@@ -90,8 +93,8 @@ function draw() {
 
         // Display the expanded image when red square is clicked
         if (expanding && currentPage === x + y * cols) {
-          let expandedX = bx - (expandedSize - buttonSize) / 2 - expandedSize * 0.2;
-          let expandedY = by - (expandedSize - buttonSize) / 2;
+          let expandedX = bx - (expandedSize - buttonSize) / 2 - expandedSize * 0.2 + centerX;
+          let expandedY = by - (expandedSize - buttonSize) / 2 + centerY;
           image(expandedImage, expandedX, expandedY, expandedSize * 1.5, expandedSize); // Display the loaded image
         }
       }
