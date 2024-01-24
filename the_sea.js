@@ -35,8 +35,8 @@ function draw() {
   xOffset += (targetXOffset - xOffset) * easing;
   yOffset += (targetYOffset - yOffset) * easing;
 
-  let centerX = windowWidth / 2 + scrollX;
-  let centerY = windowHeight / 2 + scrollY;
+  let centerX = windowWidth / 2;
+  let centerY = windowHeight / 2;
 
   let yoff = yOffset;
 
@@ -95,8 +95,8 @@ function draw() {
 
         // Display the expanded image with fading effect when the red square is clicked
         if (expanding && currentPage === x + y * cols) {
-          let expandedX = bx - (expandedSize - buttonSize) / 2 - expandedSize * 0.2 + centerX;
-          let expandedY = by - (expandedSize - buttonSize) / 2 + centerY;
+          let expandedX = bx + (buttonSize - expandedSize) / 2;
+          let expandedY = by + (buttonSize - expandedSize) / 2;
           
           fill(255, 0, 0, fadeAlpha); // Set fill with fading effect
           image(expandedImage, expandedX, expandedY, expandedSize * 1.5, expandedSize); // Display the loaded image
