@@ -37,6 +37,12 @@ function draw() {
   let centerX = windowWidth / 2;
   let centerY = windowHeight / 2;
 
+  if (document.body.style.position === 'fixed') {
+    // Adjust for fixed body positioning
+    centerX += window.pageXOffset;
+    centerY += window.pageYOffset;
+  }
+
   let yoff = yOffset;
 
   for (let y = 0; y < rows; y++) {
@@ -91,10 +97,10 @@ function draw() {
         noStroke();
         rect(bx, by, buttonSize, buttonSize);
 
-        // Display the expanded image when red square is clicked
+        // Display the expanded image when the red square is clicked
         if (expanding && currentPage === x + y * cols) {
-          let expandedX = mouseX - expandedSize * 0.75; // Adjusted positioning based on mouseX
-          let expandedY = mouseY - expandedSize / 2;
+          let expandedX = bx - (expandedSize - buttonSize) / 2 - expandedSize * 0.2 + centerX;
+          let expandedY = by - (expandedSize - buttonSize) / 2 + centerY;
           image(expandedImage, expandedX, expandedY, expandedSize * 1.5, expandedSize); // Display the loaded image
         }
       }
@@ -103,6 +109,7 @@ function draw() {
     yoffButtons += noiseScale;
   }
 }
+
 
 function mouseMoved() {
   targetXOffset = map(mouseX, 0, windowWidth, -w / 300, w / 300);
