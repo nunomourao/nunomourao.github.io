@@ -35,14 +35,8 @@ function draw() {
   xOffset += (targetXOffset - xOffset) * easing;
   yOffset += (targetYOffset - yOffset) * easing;
 
-  let centerX = windowWidth / 2;
-  let centerY = windowHeight / 2;
-
-  if (document.body.style.position === 'fixed') {
-    // Adjust for fixed body positioning
-    centerX += window.pageXOffset;
-    centerY += window.pageYOffset;
-  }
+  let centerX = windowWidth / 2 + scrollX;
+  let centerY = windowHeight / 2 + scrollY;
 
   let yoff = yOffset;
 
