@@ -93,8 +93,8 @@ function draw() {
 
         // Display the expanded image when red square is clicked
         if (expanding && currentPage === x + y * cols) {
-          let expandedX = bx - (expandedSize - buttonSize) / 2 - expandedSize * 0.2;
-          let expandedY = by - (expandedSize - buttonSize) / 2;
+          let expandedX = mouseX - expandedSize * 0.75; // Adjusted positioning based on mouseX
+          let expandedY = mouseY - expandedSize / 2;
           image(expandedImage, expandedX, expandedY, expandedSize * 1.5, expandedSize); // Display the loaded image
         }
       }
