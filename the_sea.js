@@ -1,3 +1,33 @@
+let noiseVal;
+let noiseScale = 0.125;
+let cols, rows;
+let scl = 20;
+let w = 2000;
+let h = 1600;
+let xOffset = 0;
+let yOffset = 0;
+let targetXOffset = 0;
+let targetYOffset = 0;
+let easing = 0.01;
+let buttonSpacing = 7; // Spacing between buttons
+let buttonSize = 20; // Size of the buttons
+
+let currentPage = -1; // Variable to keep track of the current page
+let expanding = false; // Variable to track if the red square is expanding
+let expandedSize = buttonSize * 6; // Size of the expanded rectangle
+let expandedImage;
+
+function preload() {
+  expandedImage = loadImage('image.jpg');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  cols = w / scl;
+  rows = h / scl;
+  noiseDetail(8, 0.5); // Increased noise detail for smoother contours
+}
+
 function draw() {
   background(255);
   stroke(0); // Set stroke color to black
@@ -78,4 +108,19 @@ function draw() {
     }
     yoffButtons += noiseScale;
   }
+}
+
+
+function mouseMoved() {
+  targetXOffset = map(mouseX, 0, windowWidth, -w / 300, w / 300);
+  targetYOffset = map(mouseY, 0, windowHeight, -h / 300, h / 300);
+
+  // Reset currentPage when the mouse is not hovering over any button
+  if (!expanding) {
+    currentPage = -1;
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
