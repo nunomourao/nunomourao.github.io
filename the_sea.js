@@ -16,6 +16,7 @@ let currentPage = -1; // Variable to keep track of the current page
 let expanding = false; // Variable to track if the red square is expanding
 let expandedSize = buttonSize * 6; // Size of the expanded rectangle
 let expandedImage;
+let fadeAlpha = 0; // Variable to control fading effect
 
 function preload() {
   expandedImage = loadImage('image.jpg');
@@ -86,6 +87,7 @@ function draw() {
           if (mouseIsPressed) {
             currentPage = x + y * cols; // Calculate the current page based on button position
             expanding = true;
+            fadeAlpha = 0; // Reset fadeAlpha when the red square is clicked
           }
         } else {
           fill(0); // Default black color for buttons
@@ -97,11 +99,16 @@ function draw() {
         noStroke();
         rect(bx, by, buttonSize, buttonSize);
 
-        // Display the expanded image when the red square is clicked
+        // Display the expanded image with fading effect when the red square is clicked
         if (expanding && currentPage === x + y * cols) {
           let expandedX = bx - (expandedSize - buttonSize) / 2 - expandedSize * 0.2 + centerX;
           let expandedY = by - (expandedSize - buttonSize) / 2 + centerY;
+          
+          fill(255, 0, 0, fadeAlpha); // Set fill with fading effect
           image(expandedImage, expandedX, expandedY, expandedSize * 1.5, expandedSize); // Display the loaded image
+
+          // Gradually increase alpha for fading effect
+          fadeAlpha = min(fadeAlpha + 5, 255);
         }
       }
       xoffButtons += noiseScale;
@@ -109,7 +116,6 @@ function draw() {
     yoffButtons += noiseScale;
   }
 }
-
 
 function mouseMoved() {
   targetXOffset = map(mouseX, 0, windowWidth, -w / 300, w / 300);
