@@ -16,7 +16,7 @@ let currentPage = -1; // Variable to keep track of the current page
 let expanding = false; // Variable to track if the red square is expanding
 let expandedSize = buttonSize * 6; // Size of the expanded rectangle
 let expandedImage;
-let fadeAlpha = 2; // Variable to control fading effect
+let fadeAlpha = 100; // Variable to control fading effect
 
 function preload() {
   expandedImage = loadImage('image.jpg');
