@@ -9,7 +9,7 @@ let yOffset = 0;
 let targetXOffset = 0;
 let targetYOffset = 0;
 let easing = 0.01;
-let buttonSpacing = 10; // Spacing between buttons
+let buttonSpacing = 7; // Spacing between buttons
 let buttonSize = 20; // Size of the buttons
 
 let currentPage = -1; // Variable to keep track of the current page
