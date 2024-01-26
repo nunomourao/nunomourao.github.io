@@ -9,14 +9,14 @@ let yOffset = 0;
 let targetXOffset = 0;
 let targetYOffset = 0;
 let easing = 0.01;
-let buttonSpacing = 7; // Spacing between buttons
+let buttonSpacing = 10; // Spacing between buttons
 let buttonSize = 20; // Size of the buttons
 
 let currentPage = -1; // Variable to keep track of the current page
 let expanding = false; // Variable to track if the red square is expanding
-let expandedSize = buttonSize * 6; // Size of the expanded rectangle
+let expandedSize = buttonSize * 4; // Size of the expanded rectangle
 let expandedImage;
-let fadeAlpha = 100; // Variable to control fading effect
+let fadeAlpha = 0; // Variable to control fading effect
 
 function preload() {
   expandedImage = loadImage('image.jpg');
